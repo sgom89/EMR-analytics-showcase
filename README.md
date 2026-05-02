@@ -2,83 +2,80 @@
 
 An EMR-style analytics project built with SQLite, SQL, pandas, and Jupyter Notebook.
 
-This project analyses healthcare-style records including patients, appointments, treatment notes, payments, and lab results. It is designed to show how relational medical data can be explored for operational and clinical insights.
+This project explores healthcare-style records including patients, appointments, treatment notes, payments, and lab results. It is designed as a portfolio project that shows how relational data can be queried, analysed, and presented in a clean notebook workflow.
 
-## Main Components
+The main analysis notebook in this package is `notebooks/emr_analytics_showcase_portfolio.ipynb`.
 
-- `SQLite` database for structured healthcare-style data
-- `SQL` queries for joins, aggregation, and reporting
-- `Jupyter Notebook` for exploratory analysis and portfolio presentation
-- `pandas`, `matplotlib`, and `seaborn` for analysis and visualisation
-- CSV exports for quick reuse in other tools
+## Project Files
 
-## Included Files
-
-- `data/emr_showcase.db`: ready-to-use SQLite database
-- `data/exports/*.csv`: exported datasets
-- `notebooks/emr_analytics_showcase.ipynb`: executed notebook
-- `build_data.py`: helper logic for building the dataset
-- `seed_emr_showcase.py`: script to rebuild the database if needed
+- `build_data.py`: helper logic for dataset creation
+- `seed_emr_showcase.py`: rebuilds the SQLite database if needed
 - `sql_queries.sql`: reusable SQL queries
-- `requirements.txt`: Python dependencies
+- `notebooks/emr_analytics_showcase_portfolio.ipynb`: portfolio-focused notebook version
+- `data/emr_showcase.db`: ready-to-use SQLite database
+- `data/exports/`: exported CSV files
+- `images/`: generated visuals used by the notebook and this README
 
-## Dataset
+## Analysis Workflow
 
-The records included in this project are synthetic and suitable for portfolio use.
+1. Connect to the SQLite database with a robust project-relative path.
+2. Inspect the core EMR-style tables and record counts.
+3. Explore patient risk levels and appointment activity.
+4. Analyse payment status and revenue distribution.
+5. Review diagnosis-group activity from treatment notes.
+6. Inspect abnormal lab results.
+7. Summarise patient utilisation with a corrected revenue aggregation.
 
-## What The Analysis Covers
+## Key Findings
 
-- patient demographics
-- appointment volume by month and type
-- revenue split by payment status
-- treatment-note activity by diagnosis group
-- abnormal lab-result review
-- patient utilisation across appointments, notes, and paid revenue
+- The project combines clinical and operational data in one relational SQLite database.
+- Appointment patterns can be broken down by month and visit type.
+- Payment status provides a quick view of collected versus pending revenue.
+- Treatment-note counts give a useful proxy for diagnosis-group workload.
+- The patient-utilisation query uses separate aggregates to avoid inflated revenue totals.
+
+## Generated Visuals
+
+### Patients By Risk Level
+
+![Patients by Risk Level](images/emr_risk_levels.png)
+
+### Monthly Appointment Volume
+
+![Monthly Appointment Volume by Type](images/emr_monthly_appointments.png)
+
+### Revenue By Payment Status
+
+![Revenue by Payment Status](images/emr_revenue_by_status.png)
+
+### Treatment Notes By Diagnosis Group
+
+![Treatment Notes by Diagnosis Group](images/emr_diagnosis_mix.png)
 
 ## How To Run
 
-### 1. Create and activate a virtual environment
+Create and use a virtual environment, then install the required packages:
 
-```powershell
+```bash
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-### 2. Install dependencies
-
-```powershell
+.\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 3. Rebuild the database if needed
+Rebuild the database if needed:
 
-```powershell
+```bash
 python seed_emr_showcase.py
 ```
 
-### 4. Open the notebook
+Open the notebook:
 
-```powershell
-jupyter notebook notebooks/emr_analytics_showcase.ipynb
-```
-
-## Project Structure
-
-```text
-emr-analytics-showcase/
-|- build_data.py
-|- seed_emr_showcase.py
-|- sql_queries.sql
-|- requirements.txt
-|- data/
-|  |- emr_showcase.db
-|  `- exports/
-`- notebooks/
-   `- emr_analytics_showcase.ipynb
+```bash
+jupyter notebook notebooks/emr_analytics_showcase_portfolio.ipynb
 ```
 
 ## Notes
 
-- The notebook is ready to review and includes a portfolio-oriented narrative.
-- The database is included so the project can be opened immediately without extra setup.
-- The exported CSV files are useful if you want to analyse the same data in another tool later.
+- The records included in this project are synthetic and suitable for portfolio use.
+- The notebook is structured to be easy to review in GitHub or discuss in an interview.
+- The figures are saved in `images/` so they can also be reused in project documentation.
